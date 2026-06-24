@@ -1,0 +1,30 @@
+{
+  "name": "gmerge",
+  "version": "0.0.1",
+  "description": "CLI tool for merging Git branches",
+  "bin": {
+    "gmerge": "./dist/index.js"
+  },
+  "scripts": {
+    "build": "rm -rf dist && tsc && chmod +x dist/index.js",
+    "dev": "tsc -w",
+    "test": "tsc --noEmit && biome check .",
+    "prepublishOnly": "npm test && npm run build"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "dependencies": {
+    "command-line-args": "^6.0.2",
+    "command-line-usage": "^7.0.4",
+    "execa": "^9.6.1"
+  },
+  "devDependencies": {
+    "@biomejs/biome": "^2.5.0",
+    "@types/command-line-args": "^5.2.3",
+    "@types/command-line-usage": "^5.0.4",
+    "@types/node": "^26.0.0",
+    "typescript": "^6.0.3"
+  }
+}
