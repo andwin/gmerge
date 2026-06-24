@@ -12,12 +12,12 @@ const displayHelp = (
   console.log(
     commandLineUsage([
       {
-        header: 'Auto Package Updater',
-        content: 'Automatically updates npm packages in a git repository.',
+        header: 'Mergit',
+        content: 'CLI tool for merging Git branches.',
       },
       {
         header: 'Usage',
-        content: 'gmerge <targetBranch> [options]',
+        content: 'mergit <targetBranch> [options]',
       },
       {
         header: 'Options',

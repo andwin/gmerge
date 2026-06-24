@@ -1,9 +1,9 @@
 {
-  "name": "gmerge",
+  "name": "mergit",
   "version": "0.0.1",
   "description": "CLI tool for merging Git branches",
   "bin": {
-    "gmerge": "./dist/index.js"
+    "mergit": "./dist/index.js"
   },
   "scripts": {
     "build": "rm -rf dist && tsc && chmod +x dist/index.js",
