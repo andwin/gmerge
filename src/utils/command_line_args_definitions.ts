@@ -11,7 +11,7 @@ const commandLineArgsDefinitions: OptionDefinitionWithDescription[] = [
     name: 'targetBranch',
     type: String,
     defaultOption: true,
-    description: 'Branch to merge into the current branch.',
+    description: 'Branch to merge the current branch into.',
   },
 ]
 
