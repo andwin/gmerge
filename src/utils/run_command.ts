@@ -1,10 +1,10 @@
 import { execa } from 'execa'
 
-const runCommand = async (command: string) => {
+const runCommand = async (file: string, args: string[]) => {
   try {
-    await execa(command, { shell: process.env.SHELL || true })
+    await execa(file, args)
   } catch (e) {
-    ;(e as Error).message = `Command failed: ${command}`
+    ;(e as Error).message = `Command failed: ${file} ${args.join(' ')}`
     throw e
   }
 }

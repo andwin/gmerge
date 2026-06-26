@@ -26,27 +26,27 @@ const run = async () => {
   const workingBranch = await getWorkingBranch()
 
   // Checkout staging
-  await runCommand(`git checkout ${targetBranch}`)
+  await runCommand('git', ['checkout', targetBranch])
 
   // Pull changes
   try {
-    await runCommand(`git pull`)
+    await runCommand('git', ['pull'])
   } catch {
     // ignore if pull fails
   }
 
   // Checkout staging
-  await runCommand(`git merge ${workingBranch}`)
+  await runCommand('git', ['merge', workingBranch])
 
   // Push staging
   try {
-    await runCommand(`git push`)
+    await runCommand('git', ['push'])
   } catch {
     // ignore if push fails
   }
 
   // Checkout working branch
-  await runCommand(`git checkout ${workingBranch}`)
+  await runCommand('git', ['checkout', workingBranch])
 }
 
 run().catch((e) => {
