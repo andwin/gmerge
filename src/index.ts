@@ -1,3 +1,5 @@
+#!/usr/bin/env node
+
 import commandLineArgs from 'command-line-args'
 import commandLineArgsDefinitions from './utils/command_line_args_definitions'
 import displayHelp from './utils/display_help'
