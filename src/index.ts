@@ -17,6 +17,11 @@ const run = async () => {
   }
 
   const { targetBranch } = commandLineArguments
+  if (!targetBranch) {
+    console.error('Target branch is required')
+    displayHelp(commandLineArgsDefinitions)
+    process.exit(1)
+  }
 
   await verifyPristineState()
   const workingBranch = await getWorkingBranch()
