@@ -21,6 +21,7 @@ const displayHelp = (
       },
       {
         header: 'Options',
+        hide: ['targetBranch'],
         optionList: commandLineArgsDefinitions,
       },
     ]),
