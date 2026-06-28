@@ -1,6 +1,7 @@
 #!/usr/bin/env node
 
 import commandLineArgs from 'command-line-args'
+import branchExistsLocally from './utils/branch_exists_locally'
 import commandLineArgsDefinitions from './utils/command_line_args_definitions'
 import displayHelp from './utils/display_help'
 import getPackageVersion from './utils/get_package_version'
@@ -25,6 +26,11 @@ const run = async () => {
   if (!targetBranch) {
     console.error('Target branch is required')
     displayHelp(commandLineArgsDefinitions)
+    process.exit(1)
+  }
+
+  if (!(await branchExistsLocally(targetBranch))) {
+    console.error(`Branch ${targetBranch} does not exist locally`)
     process.exit(1)
   }
 
