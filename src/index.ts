@@ -6,6 +6,7 @@ import commandLineArgsDefinitions from './utils/command_line_args_definitions'
 import displayHelp from './utils/display_help'
 import getPackageVersion from './utils/get_package_version'
 import getWorkingBranch from './utils/get_working_branch'
+import hasUpstreamBranch from './utils/has_upstream_branch'
 import runCommand from './utils/run_command'
 import verifyPristineState from './utils/verify_pristine_state'
 
@@ -35,26 +36,23 @@ const run = async () => {
   }
 
   await verifyPristineState()
+  const hasUpstream = await hasUpstreamBranch(targetBranch)
   const workingBranch = await getWorkingBranch()
 
   // Checkout staging
   await runCommand('git', ['checkout', targetBranch])
 
   // Pull changes
-  try {
+  if (hasUpstream) {
     await runCommand('git', ['pull'])
-  } catch {
-    // ignore if pull fails
   }
 
   // Checkout staging
   await runCommand('git', ['merge', workingBranch])
 
   // Push staging
-  try {
+  if (hasUpstream) {
     await runCommand('git', ['push'])
-  } catch {
-    // ignore if push fails
   }
 
   // Checkout working branch
