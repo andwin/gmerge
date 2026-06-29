@@ -39,7 +39,7 @@ const run = async () => {
   const hasUpstream = await hasUpstreamBranch(targetBranch)
   const workingBranch = await getWorkingBranch()
 
-  // Checkout staging
+  // Checkout target branch
   await runCommand('git', ['checkout', targetBranch])
 
   // Pull changes
@@ -47,10 +47,10 @@ const run = async () => {
     await runCommand('git', ['pull'])
   }
 
-  // Checkout staging
+  // Merge working branch into target branch
   await runCommand('git', ['merge', workingBranch])
 
-  // Push staging
+  // Push changes
   if (hasUpstream) {
     await runCommand('git', ['push'])
   }
