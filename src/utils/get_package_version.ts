@@ -6,12 +6,13 @@ const getPackageVersion = () => {
   try {
     const packageJsonPath = findPackageJSON(pathToFileURL(__filename).href)
     if (!packageJsonPath) {
-      throw new Error('Could not find package.json')
+      console.error('Could not find package.json')
+      process.exit(1)
     }
     const { version } = JSON.parse(readFileSync(packageJsonPath, 'utf8'))
     return version
   } catch {
-    console.error('Could not find package.json')
+    console.error('Could not read package.json')
     process.exit(1)
   }
 }
