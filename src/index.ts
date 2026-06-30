@@ -24,11 +24,6 @@ const run = async () => {
   }
 
   const { targetBranch } = commandLineArguments
-  if (!targetBranch) {
-    console.error('Target branch is required')
-    displayHelp(commandLineArgsDefinitions)
-    process.exit(1)
-  }
 
   if (!(await branchExistsLocally(targetBranch))) {
     console.error(`Branch ${targetBranch} does not exist locally`)
