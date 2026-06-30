@@ -48,7 +48,15 @@ const run = async () => {
   }
 
   // Merge working branch into target branch
-  await runCommand('git', ['merge', workingBranch])
+  try {
+    await runCommand('git', ['merge', workingBranch])
+  } catch {
+    await runCommand('git', ['merge', '--abort']).catch(() => {})
+    await runCommand('git', ['checkout', workingBranch])
+
+    console.error('Merge conflict, aborting')
+    process.exit(1)
+  }
 
   // Push changes
   if (hasUpstream) {
