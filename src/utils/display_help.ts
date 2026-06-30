@@ -17,7 +17,11 @@ const displayHelp = (
       },
       {
         header: 'Usage',
-        content: 'mergito <targetBranch> [options]',
+        content: [
+          'mergito [targetBranch] [options]',
+          '',
+          'targetBranch defaults to {bold staging} if omitted.',
+        ],
       },
       {
         header: 'Options',
