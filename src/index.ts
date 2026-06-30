@@ -37,7 +37,7 @@ const run = async () => {
 
   await verifyPristineState()
   const hasUpstream = await hasUpstreamBranch(targetBranch)
-  const workingBranch = await getWorkingBranch()
+  const sourceBranch = await getWorkingBranch()
 
   // Checkout target branch
   await runCommand('git', ['checkout', targetBranch])
@@ -47,12 +47,12 @@ const run = async () => {
     await runCommand('git', ['pull'])
   }
 
-  // Merge working branch into target branch
+  // Merge source branch into target branch
   try {
-    await runCommand('git', ['merge', workingBranch])
+    await runCommand('git', ['merge', sourceBranch])
   } catch {
     await runCommand('git', ['merge', '--abort']).catch(() => {})
-    await runCommand('git', ['checkout', workingBranch])
+    await runCommand('git', ['checkout', sourceBranch])
 
     console.error('Merge conflict, aborting')
     process.exit(1)
@@ -63,8 +63,8 @@ const run = async () => {
     await runCommand('git', ['push'])
   }
 
-  // Checkout working branch
-  await runCommand('git', ['checkout', workingBranch])
+  // Checkout source branch
+  await runCommand('git', ['checkout', sourceBranch])
 }
 
 run().catch((e) => {
